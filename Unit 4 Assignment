@@ -1,0 +1,83 @@
+#include <iostream>
+#include <string>
+
+//Base class: Character
+class Character {
+protected:
+    std::string name;
+    int health;
+    int attackPower;
+    
+public:
+    Character(std::string name, int health, int attackPower);
+        : name(name), health(health), attackPower(attackPower) {}
+        
+        //method to attack others
+        virtual void attack(Character &target) {
+            std::cout << name << " attacks " << target.name << " for " << attackPower << " damage " << std::endl;
+            target.takeDamage(attackPower);
+        }
+        
+        //method to recieve damage
+        void takeDamage(int Damage) {
+            health -= damage;
+            if (health <=0) {
+                health = 0;
+                std::cout << name << " has been defeated " << std::endl;
+            } else {
+                std::cout << name << " now has " << health << " health left. " << std::endl;
+            }
+        }
+        
+        //getter for name
+        std::string getName() {
+            return name;
+        }
+        
+        //getter for health
+        int getHealth() {
+            return health;
+        }
+};
+
+//Class: Titan
+class Titan : public Character {
+    public;
+    Titan(std::string name, int health, int attackPower)
+    : Character(name, health attackPower) {}
+    
+    void attack(Character &target) override {
+        std::cout << name << " swings a mighty sword " << std::endl;
+        Character::attack(target);
+    }
+    
+class Wizard : public Character {
+    public;
+    Wizard(std::string name, int health, int attackPower)
+    : Character(name, health, attackPower) {}
+    
+    void attack(Character &target) override {
+        std::cout << name << "casts lightning spell " << std::endl;
+        Character::attack(target);
+    }
+//Main function
+int main() {
+    Titan titan("Titan", 100, 15);
+    Wizard wizard("Wizard", 80, 10);
+    
+    //Battle begins
+    std::cout << "Battle begins between " << titan.getName() << " and " << wizard.getName() << std::endl;
+    
+    //characters fight
+    titan.attack(wizard);
+    wizard.attack(titan);
+    
+    //battle ends
+    if (titan.getHealth()> 0 && mage.getHealth() > 0) {
+        std::cout << "The battle continues" << std::endl;
+    } else {
+        std::cout << "One of the fighters has perished" << std::endl;
+    }
+    
+    return 0;
+}
