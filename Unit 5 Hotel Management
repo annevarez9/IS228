@@ -1,0 +1,73 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Guest {
+    string name;
+    int roomNumber;
+};
+
+vector<Guest> guestList;
+
+void showMenu() {
+    cout << "\n===== Hotel Management System =====\n";
+    cout << "1. Add Guest\n";
+    cout << "2. Remove Guest\n";
+    cout << "3. Exit\n";
+    cout << "Enter your choice: ";
+}
+
+void addGuest() {
+    Guest newGuest;
+    cout << "Enter guest name: ";
+    cin.ignore();
+    getline(cin, newGuest.name);
+    cout << "Enter room number: ";
+    cin >> newGuest.roomNumber;
+
+    guestList.push_back(newGuest);
+    cout << "Guest added successfully.\n";
+}
+
+void removeGuest() {
+    int room;
+    cout << "Enter room number to remove: ";
+    cin >> room;
+
+    for (auto it = guestList.begin(); it != guestList.end(); ++it) {
+        if (it->roomNumber == room) {
+            guestList.erase(it);
+            cout << "Guest removed successfully.\n";
+            return;
+        }
+    }
+
+    cout << "No guest found with that room number.\n";
+}
+
+int main() {
+    int choice;
+
+    do {
+        showMenu();
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                addGuest();
+                break;
+            case 2:
+                removeGuest();
+                break;
+            case 3:
+                cout << "Exiting program.\n";
+                break;
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+
+    } while (choice != 3);
+
+    return 0;
+}
