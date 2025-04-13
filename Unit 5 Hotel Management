@@ -14,7 +14,8 @@ void showMenu() {
     cout << "\n===== Hotel Management System =====\n";
     cout << "1. Add Guest\n";
     cout << "2. Remove Guest\n";
-    cout << "3. Exit\n";
+    cout << "3. View Guests\n";
+    cout << "4. Exit\n";
     cout << "Enter your choice: ";
 }
 
@@ -44,6 +45,20 @@ void removeGuest() {
     }
 
     cout << "No guest found with that room number.\n";
+}
+
+// Added View Guest option
+
+void viewGuests() {
+    if (guestList.empty()) {
+        cout << "No guests currently.\n";
+        return;
+    }
+
+    cout << "\nCurrent Guests:\n";
+    for (const auto& guest : guestList) {
+        cout << "Name: " << guest.name << ", Room: " << guest.roomNumber << endl;
+    }
 }
 
 int main() {
