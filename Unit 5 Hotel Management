@@ -76,13 +76,16 @@ int main() {
                 removeGuest();
                 break;
             case 3:
+                viewGuests();
+                break;
+            case 4:
                 cout << "Exiting program.\n";
                 break;
             default:
                 cout << "Invalid choice. Please try again.\n";
         }
 
-    } while (choice != 3);
+    } while (choice != 4);
 
     return 0;
 }
